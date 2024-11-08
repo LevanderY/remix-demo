@@ -22,7 +22,7 @@ export const clientLoader = async () => {
 };
 
 const Products: React.FC = () => {
-  const {t} = useTranslation(['common']);
+  const {t} = useTranslation(['common', 'products']);
   const {data, isLoading} = useQueryProductsList();
   const isMobile = useMediaQuery('(max-width:600px)');
 

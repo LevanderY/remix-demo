@@ -1,11 +1,15 @@
 {
 	"title": {
-		"create": "إنشاء منتج",
-		"edit": "تعديل منتج"
+			"create": "إنشاء منتج",
+			"edit": "تعديل منتج"
 	},
 	"sku": "رمز المنتج",
 	"category": "القسم",
 	"quantity": "الكمية",
 	"price": "السعر",
-	"priceSale": "التخفيض"
+	"priceSale": "التخفيض",
+	"created": "تم الإنشاء",
+	"updated": "تم التحديث",
+	"active": "نشط",
+	"inactive": "غير نشط"
 }
