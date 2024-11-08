@@ -2,7 +2,7 @@ import type {MetaFunction} from '@remix-run/node';
 import {redirect} from '@remix-run/react';
 import {useTranslation} from 'react-i18next';
 
-import {Stack} from '@mui/material';
+import {Stack, useMediaQuery} from '@mui/material';
 
 import {useQueryProductsList} from '~/services/products';
 
@@ -10,9 +10,7 @@ import {SkeletonOnLoading} from '~/global/components/skeleton-on-loading';
 import {AppButton} from '~/global/components/app-button';
 
 import {ProductsTable} from './components/table';
-
-//
-//
+import {ProductsListMobile} from './components/products-list-mobile';
 
 export const handle = {i18n: ['common', 'products']};
 export const meta: MetaFunction = () => [{title: 'Remix App - Products'}];
@@ -23,15 +21,10 @@ export const clientLoader = async () => {
   return null;
 };
 
-//
-//
-
-export default function Products() {
+const Products: React.FC = () => {
   const {t} = useTranslation(['common']);
   const {data, isLoading} = useQueryProductsList();
-
-  //
-  //
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <>
@@ -43,7 +36,13 @@ export default function Products() {
         </SkeletonOnLoading>
       </Stack>
 
-      <ProductsTable data={data?.result} isLoading={isLoading} />
+      {isMobile ? (
+        <ProductsListMobile data={data?.result || []} />
+      ) : (
+        <ProductsTable data={data?.result} isLoading={isLoading} />
+      )}
     </>
   );
-}
+};
+
+export default Products;
