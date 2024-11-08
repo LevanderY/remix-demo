@@ -1,12 +1,21 @@
+import {useEffect, useState, FC} from 'react';
+
 import {AppBar, Toolbar, Box, Container} from '@mui/material';
 
 import {HeaderNavbarLocale} from './components/locale';
 import {HeaderNavbarLinks} from './components/links';
 
-//
-//
+export const HeaderNavbar: FC = () => {
+  const [isClient, setIsClient] = useState<boolean>(false);
 
-export const HeaderNavbar = () => {
+  useEffect(() => {
+    setIsClient(typeof window !== 'undefined');
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <AppBar
       position="fixed"

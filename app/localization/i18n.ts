@@ -10,5 +10,5 @@ export default {
   fallbackLng: languagesDefault,
   defaultNS: 'common',
   react: {useSuspense: false},
-  saveMissing: true,
+  saveMissing: false,
 } as Omit<InitOptions, 'react' | 'detection'>;
