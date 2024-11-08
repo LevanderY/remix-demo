@@ -6,6 +6,7 @@ import {
   useRouteError,
   isRouteErrorResponse,
 } from '@remix-run/react';
+import {useState, useEffect} from 'react';
 
 import {CircularProgress, Grid2, Typography} from '@mui/material';
 
@@ -91,6 +92,12 @@ export function ErrorBoundary() {
 }
 
 export const HydrateFallback = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(typeof window !== 'undefined');
+  }, []);
+
   return (
     <MuiDocument>
       <Grid2
@@ -101,10 +108,14 @@ export const HydrateFallback = () => {
         alignItems="center"
         direction="column"
       >
-        <CircularProgress color="secondary" size="2rem" />
-        <Typography variant="subtitle2" fontSize="1rem">
-          Loading...
-        </Typography>
+        {isClient && (
+          <>
+            <CircularProgress color="secondary" size="2rem" />
+            <Typography variant="subtitle2" fontSize="1rem">
+              Loading...
+            </Typography>
+          </>
+        )}
       </Grid2>
     </MuiDocument>
   );
